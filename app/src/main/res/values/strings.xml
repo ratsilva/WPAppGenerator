@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">WPAppGenerator</string>
+    <string name="title_activity_main">MainActivity</string>
+
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!-- Bottom View -->
+    <string name="bottomview_home">Home</string>
+    <string name="bottomview_search">Search</string>
+    <string name="bottomview_wishlist">Wishlist</string>
+    <string name="bottomview_inbox">Inbox</string>
+    <string name="bottomview_user">User</string>
 </resources>
