@@ -10,35 +10,46 @@ public class Post {
     private int id;
     private String date;
     private String date_gmt;
-    // guid
     private String link;
+    private Map<String, Object> title;
+    private Map<String, Object> content;
+    private Map<String, Object> excerpt;
+
+    private int[] categories;
+    private int[] tags;
+
     private String modified;
     private String modified_gmt;
     private String slug;
     private String status;
     private String type;
     private String password;
-    // title
-    private Map<String, Object> content;
     private int author;
-    // excerpt
     private int featured_media;
     private String comment_status;
     private String ping_status;
     private String format;
-    // meta;
     private boolean sticky;
     private String template;
-    private int[] categories;
-    private int[] tags;
 
-    @Override
-    public String toString() {
-        return this.content.get("rendered").toString();
+    public String getExcerpt() {
+        return excerpt.get("rendered").toString();
     }
 
-    public Map<String, Object> getContent() {
-        return content;
+    public void setExcerpt(Map<String, Object> excerpt) {
+        this.excerpt = excerpt;
+    }
+
+    public String getTitle() {
+        return title.get("rendered").toString();
+    }
+
+    public void setTitle(Map<String, Object> title) {
+        this.title = title;
+    }
+
+    public String getContent() {
+        return content.get("rendered").toString();
     }
 
     public void setContent(Map<String, Object> content) {

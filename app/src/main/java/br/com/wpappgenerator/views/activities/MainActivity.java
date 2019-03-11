@@ -3,42 +3,27 @@ package br.com.wpappgenerator.views.activities;
 import android.os.Bundle;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
-import com.google.android.material.tabs.TabLayout;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-
-import android.text.Html;
-import android.text.Spanned;
-import android.util.Log;
 import android.view.MenuItem;
-import android.view.View;
-import android.webkit.WebChromeClient;
-import android.webkit.WebView;
-import android.widget.TextView;
-
-import org.sufficientlysecure.htmltextview.HtmlHttpImageGetter;
-import org.sufficientlysecure.htmltextview.HtmlTextView;
-
-import java.util.List;
 
 import androidx.viewpager.widget.ViewPager;
 import br.com.wpappgenerator.R;
 import br.com.wpappgenerator.adapters.ViewPagerAdapter;
-import br.com.wpappgenerator.objects.Post;
-import br.com.wpappgenerator.tools.restapi.HTTPRequest;
-import br.com.wpappgenerator.tools.restapi.HTTPRequest_Post;
+import br.com.wpappgenerator.objects.ClientWP;
+import br.com.wpappgenerator.views.fragments.ErrorFragment;
+import br.com.wpappgenerator.views.fragments.InboxFragment;
 import br.com.wpappgenerator.views.fragments.PostListFragment;
+import br.com.wpappgenerator.views.fragments.SearchFragment;
+import br.com.wpappgenerator.views.fragments.UserFragment;
+import br.com.wpappgenerator.views.fragments.WishListFragment;
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
+
+    public static ClientWP clienteWP;
 
     private final int FRAGMENT_HOME     = 0;
     private final int FRAGMENT_SEARCH   = 1;
@@ -55,13 +40,14 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        //Toolbar toolbar = findViewById(R.id.toolbar);
-        //setSupportActionBar(toolbar);
 
         ButterKnife.bind(this);
 
         setupViewPager();
         setupBottomView();
+
+        clienteWP = new ClientWP();
+        clienteWP.setWPHost(true);
 
 
         /*
@@ -122,11 +108,12 @@ public class MainActivity extends AppCompatActivity {
     private void setupViewPager() {
 
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
-        adapter.addFragment(new PostListFragment(), "ProductList");
-        adapter.addFragment(new PostListFragment(), "ProductList");
-        adapter.addFragment(new PostListFragment(), "ProductList");
-        adapter.addFragment(new PostListFragment(), "ProductList");
-        adapter.addFragment(new PostListFragment(), "ProductList");
+        adapter.addFragment(new PostListFragment());
+        adapter.addFragment(new SearchFragment());
+        adapter.addFragment(new WishListFragment());
+        adapter.addFragment(new InboxFragment());
+        adapter.addFragment(new UserFragment());
+        adapter.addFragment(new ErrorFragment());
 
         viewPager.setAdapter(adapter);
 

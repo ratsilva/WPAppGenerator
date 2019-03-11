@@ -8,7 +8,8 @@ import retrofit2.http.GET;
 
 public interface HTTPRequest_Post {
 
-    @GET("wp-json/wp/v2/posts")
-    Call<List<Post>> getPosts();
+    @GET("posts")
+    Call<List<Post>> getListPosts();
+
 
 }
